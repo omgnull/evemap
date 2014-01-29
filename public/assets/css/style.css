@@ -1,0 +1,228 @@
+html {
+    min-width: 1000px;
+    min-height: 600px;
+    font: 13px Tahoma, sans-serif;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    background: #000000;
+    margin: 0;
+    overflow: auto;
+}
+
+h1 {
+    text-align: center;
+    font-weight: normal;
+}
+
+a {
+    color: #FFA500;
+    text-decoration: underline;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.small {
+    font-size: 10px;
+}
+
+#viewport {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+#wgl-renderer, #gui-renderer, #gui {
+    position: absolute;
+    left: 0;
+    top: 43px;
+}
+
+#wgl-renderer {
+    z-index: 1;
+}
+
+#gui-renderer {
+    z-index: 2;
+}
+
+#gui {
+    z-index: 3;
+}
+
+#toolbar {
+    z-index: 4;
+    width: 100%;
+    color: #FFFFFF;
+    background: -moz-linear-gradient(top,  rgba(33,33,33,1) 0%, rgba(0,0,0,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(33,33,33,1)), color-stop(100%,rgba(0,0,0,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  rgba(33,33,33,1) 0%,rgba(0,0,0,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  rgba(33,33,33,1) 0%,rgba(0,0,0,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  rgba(33,33,33,1) 0%,rgba(0,0,0,1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  rgba(33,33,33,1) 0%,rgba(0,0,0,1) 100%); /* W3C */
+
+}
+
+#tools {
+    width: 100%;
+    height: 42px;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    border-bottom: 1px solid #303030;
+    line-height: 42px;
+    color: #FFFFFF;
+}
+
+#tools li {
+    list-style: none;
+}
+
+#tools ul {
+    display: none;
+    position: absolute;
+    padding: 0;
+    margin: 0;
+}
+
+.tool {
+    float: left;
+    margin: 0 15px;
+    cursor: pointer;
+    text-transform: capitalize;
+}
+
+.tool.right {
+    float: right;
+}
+
+.tw {
+    z-index: 3;
+    min-height: 200px;
+    min-width: 300px;
+    border: 1px solid #303030;
+    background: rgba(255, 255, 255, .5);
+}
+
+#loading-screen {
+    position: absolute;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000000;
+    color: #FFFFFF;
+}
+
+#loading-screen #info {
+    background: #000000 url("/img/eve_online_logo.png") no-repeat 50% 0;
+    position: relative;
+    min-height: 400px;
+    width: 600px;
+    margin: 15% auto 0;
+    padding-top: 120px;
+}
+
+#loading-screen #progress-bar {
+    display: inline-block;
+    vertical-align: top;
+    line-height: 26px;
+    text-align: center;
+    color: #FFA500;
+    text-transform: uppercase;
+}
+
+#loading-screen #progress-bar.complete {
+    border: 1px solid #FFA500;
+    cursor: pointer;
+}
+
+#loading-screen #progress-bar.complete .progress-bar-content {
+    background: none;
+}
+
+#loading-screen #progress-bar {
+    width: 330px;
+    height: 26px;
+    border: 1px solid #303030;
+    margin-left: 135px;
+}
+
+#loading-screen .progress-bar-content {
+    width: 0;
+    height: 100%;
+    background: #FFFFFF;
+}
+
+#test-click {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100px;
+    height: 30px;
+    text-align: center;
+    font-size: 16px;
+    line-height: 30px;
+    background: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    cursor: pointer;
+    color: #000;
+}
+
+.l {
+    position: absolute;
+    font-family: 'Lekton', monospace;
+    padding: 0;
+    user-select: none;
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    color: rgba(255, 255, 255, .9);
+}
+
+.l.rl {
+    font: normal 100px Tahoma;
+    font-stretch: extra-condensed;
+    text-transform: uppercase;
+    cursor: default;
+}
+
+.l.sl {
+    cursor: pointer;
+    font: normal 20px Arial;
+    -webkit-transition: opacity 0.5s;
+    -moz-transition: opacity 0.5s;
+    -ms-transition: opacity 0.5s;
+    -o-transition: opacity 0.5s;
+    transition: opacity 0.5s;
+}
+
+#audio-player {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    height: 65px;
+    color: #FFA500;
+    overflow: hidden;
+    width: 450px;
+}
+
+#audio-player div {
+    height: 24px;
+    line-height: 24px;
+    margin-bottom: 10px;
+    white-space: nowrap;
+}
+
+#audio-player audio {
+    height: 30px;
+    width: 450px;
+}
