@@ -12,8 +12,8 @@ EveMap.Materials.prototype = {
                         color:          { type: "c", value: new THREE.Color( 0xFFFFFF ) },
                         scheme:         { type: 'f', value: 1.0 },
                         scale:          { type: 'f', value: EveMap.SCALE },
-                        map0:           { type: "t", value: THREE.ImageUtils.loadTexture( 'img/disc.png' ) },
-                        map1:           { type: "t", value: THREE.ImageUtils.loadTexture( 'img/flare.png' ) }
+                        map0:           { type: "t", value: THREE.ImageUtils.loadTexture( 'assets/img/disc.png' ) },
+                        map1:           { type: "t", value: THREE.ImageUtils.loadTexture( 'assets/img/flare.png' ) }
                     },
                     vertexShader:   scope.shaders.loaded[ 'stars' ][ 'vertex' ],
                     fragmentShader: scope.shaders.loaded[ 'stars' ][ 'fragment' ],

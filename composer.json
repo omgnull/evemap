@@ -1,5 +1,8 @@
 {
     "require": {
-        "phalcon/incubator": "dev-master"
+        "silex/silex": "~1.1"
+    },
+    "suggest": {
+        "ext-phalcon": "*"
     }
 }

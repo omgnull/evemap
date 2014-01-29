@@ -35,9 +35,9 @@ EveMap.WGL.prototype = {
             region.color = region.accessable ?
                 this.evemap.colors.getGenericColor( 'regions', i ) : this.evemap.colors.unAccessible;
 
-//            region.label = EveMap.Label.createCSS3DLabel(
-//                region, { className: 'rl' }
-//            );
+            region.label = EveMap.Label.createCSS3DLabel(
+                region, { className: 'rl' }
+            );
 
 //            region.label = EveMap.Label.createPlaneLabel(
 //                region,
@@ -45,10 +45,10 @@ EveMap.WGL.prototype = {
 //                this.evemap.settings.labels.region
 //            );
 
-            region.label = EveMap.Label.createSpriteLabel(
-                region,
-                this.evemap.settings.labels.region
-            );
+//            region.label = EveMap.Label.createSpriteLabel(
+//                region,
+//                this.evemap.settings.labels.region
+//            );
 
             region.systems = new THREE.ParticleSystem(
                 new THREE.Geometry(),
@@ -64,8 +64,6 @@ EveMap.WGL.prototype = {
             this.evemap.index.regions[ region.uid ] = region;
             this.evemap.regions.push( region );
         }
-
-        console.log('-------------');
     },
     loadConstellations: function() {
         // TODO: load?

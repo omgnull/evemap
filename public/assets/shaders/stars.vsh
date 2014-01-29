@@ -28,7 +28,7 @@ void main() {
     }
 
     float _size = 1.0 * _modifier;
-    float _maxSize = 8.0 * _modifier;
+    float _maxSize = 12.0 * _modifier;
 
     gl_PointSize = 100.0 * scale * _modifier / vDistance;
 

@@ -3,29 +3,23 @@
 error_reporting(E_ALL);
 
 try {
+    $appPath = realpath(__DIR__ . '/../app') . '/';
 
-    /**
-     * Read the configuration
-     */
-    $config = include __DIR__ . "/../app/config/config.php";
+    // Configuration
+    $config = require_once $appPath . 'config/config.php';
 
-    /**
-     * Read auto-loader
-     */
-    include __DIR__ . "/../app/config/loader.php";
+    // Application
+    require_once $appPath . 'Application.php';
+    require_once $appPath. $config['appClass'] . '.php';
 
-    /**
-     * Read services
-     */
-    include __DIR__ . "/../app/config/services.php";
+    $app = new $config['appClass']($config);
 
-    /**
-     * Handle the request
-     */
-    $application = new \Phalcon\Mvc\Application($di);
+    // Send response
+    $app->handle();
 
-    echo $application->handle()->getContent();
-
-} catch (\Exception $e) {
+} catch (Exception $e) {
     error_log($e->getMessage());
+
+    header('HTTP/1.1 503 Service Temporarily Unavailable');
+    header('Retry-After: 1800');
 }

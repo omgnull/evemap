@@ -5,7 +5,7 @@ class GenericModel
     /**
      * Database connection
      *
-     * @var Phalcon\Db\Adapter\Pdo\Mysql
+     * @var PDO
      */
     private $db;
 
@@ -28,100 +28,15 @@ class GenericModel
      *
      * @var array
      */
-    private $sql = array(
-        /* regions */
-        'regions'           => '
-            SELECT
-                `regionID` AS `uid`,
-                `regionName` AS `name`,
-                round(`x`) / :modifier AS `x`,
-                round(`y`) / :modifier AS `y`,
-                round(`z`) / :modifier AS `z`,
-                round(`radius`) / :modifier AS `radius`
-            FROM
-                `mapRegions`
-            WHERE
-                `regionID` < 11000000
-            ORDER BY
-                `regionID` ASC
-        ',
-        /* constellations */
-        'constellations'    => '
-            SELECT
-                `constellationID` AS `uid`,
-                `constellationName` AS `name`,
-                `regionID`, `factionID`,
-                round(`x`) / :modifier AS `x`,
-                round(`y`) / :modifier AS `y`,
-                round(`z`) / :modifier AS `z`,
-                round(`radius`) / :modifier AS `radius`
-            FROM
-                `mapConstellations`
-            WHERE
-                `regionID` < 11000000
-            ORDER BY
-                `regionID` ASC, `constellationID` ASC
-        ',
-        /* systems */
-        'systems'           => '
-            SELECT
-                `solarSystemID` AS `uid`,
-                `solarSystemName` AS `name`,
-                `regionID`, `constellationID`,
-                `sunTypeID`, `luminosity`, `security`,
-                round(`x`) / :modifier AS `x`,
-                round(`y`) / :modifier AS `y`,
-                round(`z`) / :modifier AS `z`,
-                round(`radius`) / :modifier AS `radius`
-            FROM
-                `mapSolarSystems`
-            WHERE
-                `regionID` < 11000000
-            ORDER BY
-                `regionID` ASC, `constellationID` ASC, `solarSystemID` ASC
-        ',
-        /* jumps */
-        'jumps'             => '
-            SELECT
-                `fromSolarSystemID`, `toSolarSystemID`,
-                `fromRegionID`, `toRegionID`,
-                `fromConstellationID`, `toConstellationID`
-            FROM
-                `mapSolarSystemJumps`
-            ORDER BY
-                `fromRegionID`, `fromConstellationID`, `fromSolarSystemID`
-        ',
-        /* factions */
-        'factions'          => '
-            SELECT
-                `factionID` AS `uid`,
-                `factionName` AS `name`,
-                `description`, `solarSystemID`,
-                `corporationID`
-            FROM
-                chrFactions
+    private $sql;
 
-        ',
-        /* landmarks */
-        'landmarks'         => '
-            SELECT
-                `landmarkID` AS `uid`,
-                `landmarkName` AS `name`,
-                `description`,
-                round(`x`) / :modifier AS `x`,
-                round(`y`) / :modifier AS `y`,
-                round(`z`) / :modifier AS `z`
-            FROM
-                `mapLandmarks`
-            ORDER BY
-                importance DESC
-        '
-    );
-
-    public function __construct($db, $modifier, $fetchMode)
+    public function __construct($db, $sql, $modifier, $fetchMode)
     {
         // Inject connection
         $this->db = $db;
+
+        // SQL queries
+        $this->sql = json_decode($sql, true);
 
         // Default value LY
         $this->modifier = $modifier;
@@ -200,7 +115,11 @@ class GenericModel
     protected function &getResult($queryIndex)
     {
         if (!isset($this->sql[$queryIndex])) {
-            throw new \Phalcon\Exception(sprintf('Query index "%s" not exists.', $queryIndex));
+            throw new Exception(sprintf('Query index "%s" not exists.', $queryIndex));
+        }
+
+        if (is_array($this->sql[$queryIndex])) {
+            $this->sql[$queryIndex] = implode($this->sql[$queryIndex]);
         }
 
         return $this->getQueryResult($this->sql[$queryIndex]);
@@ -208,17 +127,14 @@ class GenericModel
 
     protected function &getQueryResult($query)
     {
+        $sth = $this->db->prepare($query);
+
         if (false !== strpos($query, 'modifier')) {
-            $result = $this->db->query($query, array(
-                'modifier' => $this->modifier
-            ), array(
-                'modifier' => Phalcon\Db\Column::BIND_PARAM_INT
-            ));
-        } else {
-            $result = $this->db->query($query);
+            $sth->bindParam(':modifier', $this->modifier, PDO::PARAM_INT);
         }
 
-        $data = $result->fetchAll();
+        $sth->execute();
+        $data = $sth->fetchAll($this->fetchMode);
 
         return $data;
     }

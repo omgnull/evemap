@@ -68,11 +68,6 @@ THREE.CSS3DRenderer = function () {
 	cameraElement.style.oTransformStyle = 'preserve-3d';
 	cameraElement.style.transformStyle = 'preserve-3d';
 
-
-    var normalizer = document.createElement( 'style' );
-    normalizer.id = 'labels-normalizer';
-
-    domElement.appendChild(normalizer);
 	domElement.appendChild( cameraElement );
 
 	this.setClearColor = function () {

@@ -80,8 +80,8 @@ EveMap.Region.prototype.preRender = function( evemap ) {
 
     if ( this.label ) {
         this.label.position = this.position;
-        //evemap.gui.add(this.label);
-        evemap.wgl.add(this.label);
+        evemap.gui.add(this.label);
+        //evemap.wgl.add(this.label);
     }
 };
 

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head profile="http://www.w3.org/2005/10/profile">
+    <link rel="icon" type="image/png" href="/assets/img/favicon.png">
+    <link rel="stylesheet" href="/assets/css/style.min.css">
+    <!--link rel="stylesheet" href="/assets/css/style.css"-->
+    <title>Eve online webgl map</title>
+
+    <script src="/assets/js/external/jquery-2.0.3.min.js"></script>
+    <script src="/assets/js/external/three.min.js"></script>
+    <script src="/assets/js/external/css3drenderer.js"></script>
+    <script src="/assets/js/external/stats.min.js"></script>
+    <script src="/assets/js/external/trackball.controls.js"></script>
+    <script src="/assets/js/external/orbit.controls.js"></script>
+    <script src="/assets/js/build/evemap.min.js"></script>
+
+    <!--script src="/assets/js/evemap.js"></script>
+    <script src="/assets/js/evemap.loader.js"></script>
+    <script src="/assets/js/evemap.logger.js"></script>
+    <script src="/assets/js/evemap.colors.js"></script>
+    <script src="/assets/js/evemap.materials.js"></script>
+    <script src="/assets/js/evemap.settings.js"></script>
+    <script src="/assets/js/evemap.region.js"></script>
+    <script src="/assets/js/evemap.system.js"></script>
+    <script src="/assets/js/evemap.label.js"></script>
+    <script src="/assets/js/evemap.system.interior.js"></script>
+    <script src="/assets/js/evemap.raycaster.js"></script>
+    <script src="/assets/js/evemap.wgl.js"></script>
+    <script src="/assets/js/evemap.gui.js"></script>
+    <script src="/assets/js/evemap.audio.js"></script-->
+</head>
+<body>
+    <section id="viewport">
+        <div id="toolbar"><ul id="tools"></ul></div>
+        <div id="loading-screen">
+            <div id="info">
+                <div id="progress-bar">
+                    <div class="progress-bar-content"></div>
+                </div>
+                <div id="error"></div>
+                <div id="about">
+                    <h1>EVE Online WebGL map</h1>
+                    <p>
+                        EVE Online WebGL map powered by:
+                    </p>
+                    <ul>
+                        <li><a href="http://www.eveonline.com/">EVE online</a> universe</li>
+                        <li>JavaScript library <a href="http://jquery.com/">jquery</a></li>
+                        <li>JavaScript 3D library <a target="_blank" href="https://github.com/mrdoob/three.js/">Three.js</a></li>
+                        <li>EVE online <a target="_blank" href="http://community.eveonline.com/community/fansites/toolkit/">Toolkit</a></li>
+                    </ul>
+                    <p>This application not based on <a href="https://github.com/ccpgames/ccpwgl">CCP WebGL Library</a></p>
+                    <p>Source on github: <a href="https://github.com/omgnull/evemap">evemap</a>.</p>
+                    <p id="tos" class="small">
+                        EVE Online and the EVE logo are the registered trademarks of CCP hf.
+                        All rights are reserved worldwide.
+                        All other trademarks are the property of their respective owners.
+                        EVE Online, the EVE logo, EVE and all associated logos and designs are the intellectual property of CCP hf.
+                        All artwork, screenshots, characters, vehicles, storylines,
+                        world facts or other recognizable features of the intellectual property
+                        relating to these trademarks are likewise the intellectual property of CCP hf.
+                        CCP hf. has granted permission to EVE-PLAY to use EVE Online and all associated logos
+                        and designs for promotional and information purposes on its website but does not endorse,
+                        and is not in any way affiliated with, EVE-PLAY.
+                        CCP is in no way responsible for the content on or functioning of this website,
+                        nor can it be liable for any damage arising from the use of this website.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        (function(){
+            var evemap = new EveMap(new EveMap.Settings());
+            evemap.render();
+        })();
+    </script>
+</body>
+</html>

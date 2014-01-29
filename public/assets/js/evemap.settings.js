@@ -1,5 +1,5 @@
 EveMap.Settings = function( adjust ) {
-    this.scale          = 100000;
+    this.scale          = 100;
     this.rayThreshold   = 0.1;
     this.toolbarHeight  = 0;
     this.projector      = new THREE.Projector();
@@ -81,7 +81,7 @@ EveMap.Settings = function( adjust ) {
         constellations:     '/api/constellations',
         factions:           '/api/factions',
         system:             '/api/system/',
-        shaders:            '/shaders/',
+        shaders:            '/assets/shaders/',
         dump:               '/js/dump.json'
     };
 
@@ -89,7 +89,7 @@ EveMap.Settings = function( adjust ) {
         var camera = new THREE.PerspectiveCamera(
             30,
             window.innerWidth / ( window.innerHeight - this.toolbarHeight ),
-            EveMap.SCALE,
+            1,
             500  * EveMap.SCALE
         );
         camera.position.set( 0, 200 * this.scale, 0 );
